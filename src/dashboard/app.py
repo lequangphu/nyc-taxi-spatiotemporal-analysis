@@ -62,7 +62,7 @@ def plot_trips_by_hour(df: pl.DataFrame):
         color_continuous_scale="Viridis",
     )
     fig.update_layout(xaxis=dict(tickmode="linear", tick0=0, dtick=1))
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, width="stretch")
 
 
 def plot_trips_by_day(df: pl.DataFrame):
@@ -83,7 +83,7 @@ def plot_trips_by_day(df: pl.DataFrame):
             "categoryarray": ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
         }
     )
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, width="stretch")
 
 
 def plot_regional_flows(df: pl.DataFrame):
@@ -103,7 +103,7 @@ def plot_regional_flows(df: pl.DataFrame):
         },
         color_continuous_scale="YlOrRd",
     )
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, width="stretch")
 
 
 def plot_trips_by_region(df: pl.DataFrame):
@@ -116,7 +116,7 @@ def plot_trips_by_region(df: pl.DataFrame):
         title="Trips by Pickup Region",
         hole=0.4,
     )
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, width="stretch")
 
 
 def main():
@@ -167,7 +167,7 @@ def main():
         col4.metric("Avg Distance", f"{stats['distance']['mean']:.2f} mi")
 
         st.subheader("Sample Data")
-        st.dataframe(df.head(100), use_container_width=True)
+        st.dataframe(df.head(100), width="stretch")
 
         st.subheader("Basic Statistics")
         col1, col2 = st.columns(2)
@@ -231,7 +231,7 @@ def main():
             color="trip_count",
             color_continuous_scale="Plasma",
         )
-        st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(fig, width="stretch")
 
     with tab3:
         st.header("Spatial Analysis")
@@ -249,7 +249,7 @@ def main():
                 color="trip_count",
                 color_continuous_scale="Greens",
             )
-            st.plotly_chart(fig, use_container_width=True)
+            st.plotly_chart(fig, width="stretch")
         with col2:
             st.subheader("Top 10 Dropoff Zones")
             dropoff_data = top_dropoff_zones(df, 10).to_pandas()
@@ -262,7 +262,7 @@ def main():
                 color="trip_count",
                 color_continuous_scale="Oranges",
             )
-            st.plotly_chart(fig, use_container_width=True)
+            st.plotly_chart(fig, width="stretch")
 
         st.subheader("Top Zone Flows")
         flow_data = zone_pair_flows(df, 15).to_pandas()
@@ -276,7 +276,7 @@ def main():
                     "avg_distance": "Avg Distance",
                 }
             ),
-            use_container_width=True,
+            width="stretch",
         )
 
     with tab4:
@@ -301,7 +301,7 @@ def main():
                         "avg_distance": "Avg Distance",
                     }
                 ),
-                use_container_width=True,
+                width="stretch",
             )
 
         st.subheader("Regional Flows")
@@ -336,7 +336,7 @@ def main():
                 summary.get("late_night_high_fare", 0),
             ],
         }
-        st.dataframe(anomaly_data, use_container_width=True)
+        st.dataframe(anomaly_data, width="stretch")
 
         st.subheader("Anomalous Trips Sample")
         if len(anomalies) > 0:
@@ -353,7 +353,7 @@ def main():
                         "trip_speed_mph",
                     ]
                 ).head(50),
-                use_container_width=True,
+                width="stretch",
             )
         else:
             st.info("No anomalies detected with current thresholds.")
