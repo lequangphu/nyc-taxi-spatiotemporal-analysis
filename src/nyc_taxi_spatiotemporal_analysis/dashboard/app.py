@@ -43,14 +43,14 @@ DATA_DIR.mkdir(parents=True, exist_ok=True)
 
 
 @st.cache_data(ttl=3600)  # Cache for 1 hour
-def load_data(year: int = 2024, month: int = 1, max_rows: int = 50000) -> pl.DataFrame:
+def load_data(year: int = 2024, month: int = 1, max_rows: int = 30000) -> pl.DataFrame:
     """Load and transform taxi trip data.
 
-    Uses a smaller sample for faster loading on Streamlit Cloud.
+    Downloads and filters actual NYC TLC data to reduce size.
     """
     try:
-        # Download with smaller sample size for Streamlit Cloud
-        filepath = download_sample(year, month, DATA_DIR, max_rows=max_rows)
+        # Download with target sample size
+        filepath = download_sample(year, month, DATA_DIR, target_rows=max_rows)
         df = load_trip_data(filepath)
         df = transform(df)
         df = add_region_columns(df)
@@ -58,17 +58,17 @@ def load_data(year: int = 2024, month: int = 1, max_rows: int = 50000) -> pl.Dat
     except Exception as e:
         import traceback
         st.error(f"Error loading data: {str(e)}")
-        st.info("Using embedded sample data instead...")
-        # Try to use embedded sample
+        st.info("Using realistic sample data instead...")
+        # Try to use realistic sample
         try:
-            from nyc_taxi_spatiotemporal_analysis.data.download import create_embedded_sample
-            filepath = create_embedded_sample(DATA_DIR)
+            from nyc_taxi_spatiotemporal_analysis.data.download import create_realistic_sample
+            filepath = create_realistic_sample(DATA_DIR, year, month, max_rows)
             df = load_trip_data(filepath)
             df = transform(df)
             df = add_region_columns(df)
             return df
         except Exception as e2:
-            st.error(f"Could not load embedded sample: {str(e2)}")
+            st.error(f"Could not load sample: {str(e2)}")
             # Return minimal DataFrame to prevent crashes
             return pl.DataFrame()
 
