@@ -1,0 +1,183 @@
+
+[     UTC     ] Logs for nyc-taxi-spatiotemporal-analysis-vqgaxmmuiddjvq4rnpjnll.streamlit.app/
+────────────────────────────────────────────────────────────────────────────────────────
+[03:19:41] 🚀 Starting up repository: 'nyc-taxi-spatiotemporal-analysis', branch: 'main', main module: 'src/dashboard/app.py'
+[03:19:41] 🐙 Cloning repository...
+[03:19:41] 🐙 Cloning into '/mount/src/nyc-taxi-spatiotemporal-analysis'...
+
+[03:19:41] 🐙 Cloned repository!
+[03:19:41] 🐙 Pulling code changes from Github...
+[03:19:42] 📦 Processing dependencies...
+[03:19:42] 📦 Apt dependencies were installed from /mount/src/nyc-taxi-spatiotemporal-analysis/packages.txt using apt-get.
+Get:1 http://deb.debian.org/debian-security bullseye-security InRelease [27.2 kB]
+Hit:2 http://deb.debian.org/debian trixie InRelease
+Get:3 http://deb.debian.org/debian trixie-updates InRelease [47.3 kB]
+Get:4 http://deb.debian.org/debian-security trixie-security InRelease [43.4 kB]
+Get:5 http://deb.debian.org/debian-security trixie-security/main amd64 Packages [108 kB]
+Get:6 https://packages.microsoft.com/debian/11/prod bullseye InRelease [3650 B]
+Get:7 https://packages.microsoft.com/debian/11/prod bullseye/main amd64 Packages [230 kB]
+Get:8 https://packages.microsoft.com/debian/11/prod bullseye/main arm64 Packages [73.1 kB]
+Fetched 533 kB in 2s (306 kB/s)
+Reading package lists...[2026-03-11 03:19:44.742577] 
+Reading package lists...[2026-03-11 03:19:45.507764] 
+Building dependency tree...[2026-03-11 03:19:45.766522] 
+Reading state information...[2026-03-11 03:19:45.766796] 
+0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
+Prepared 41 packages in 2.86s
+Installed 41 packages in 295ms
+ + altair==6.0.0
+ + attrs==25.4.0
+ + blinker==1.9.0
+ + cachetools==7.0.5
+ + certifi==2026.2.25
+ + charset-normalizer==3.4.5
+ + click==8.3.1
+ + gitdb==4.0.12
+ + gitpython==3.1.46
+ + idna==3.11
+ + jinja2==3.1.6
+ [2026-03-11 03:19:50.179581] + jsonschema==4.26.0
+ + jsonschema-specifications==2025.9.1
+ + markupsafe==3.0.3
+ + narwhals==2.18.0
+ + numpy==2.4.3
+ + nyc-taxi-spatiotemporal-analysis==0.1.0 (from file:///mount/src/nyc-taxi-spatiotemporal-analysis)
+ + packaging==26.0
+ +[2026-03-11 03:19:50.179890]  pandas==2.3.3
+ + pillow==12.1.1
+ + plotly==6.6.0
+ + polars==1.38.1
+ + polars-runtime-32==1.38.1
+ + protobuf==6.33.5
+ + pyarrow==23.0.1
+ + pydeck==0.9.1
+ + python-dateutil==2.9.0.post0
+ + pytz==2026.1.post1
+ + referencing==0.37.0
+ + requests==2.32.5
+ + rpds-py==0.30.0
+ + six==1.17.0
+ + [2026-03-11 03:19:50.180299] smmap==5.0.3
+ + streamlit==1.55.0
+ + tenacity==9.1.4
+ + toml==0.10.2
+ + tornado==6.5.5
+ + typing-extensions==4.15.0
+ + tzdata==2025.3
+ + urllib3==2.6.3
+ + [2026-03-11 03:19:50.180449] watchdog==6.0.0
+[03:19:50] 🐍 Python dependencies were installed from /mount/src/nyc-taxi-spatiotemporal-analysis/uv.lock using uv-sync.
+[03:19:50] 📦 WARN: More than one requirements file detected in the repository. Available options: uv-sync /mount/src/nyc-taxi-spatiotemporal-analysis/uv.lock, uv /mount/src/nyc-taxi-spatiotemporal-analysis/requirements.txt, poetry /mount/src/nyc-taxi-spatiotemporal-analysis/pyproject.toml. Used: uv-sync with /mount/src/nyc-taxi-spatiotemporal-analysis/uv.lock
+Check if streamlit is installed
+Streamlit is already installed
+[03:19:51] 📦 Processed dependencies!
+2026-03-11 03:19:53.556 "client.maxUploadSize" is not a valid config option. If you previously had this config option set, it may have been removed.
+
+
+
+2026-03-11 03:20:00.666 Uncaught app execution
+Traceback (most recent call last):
+  File "/home/adminuser/venv/lib/python3.14/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 129, in exec_func_with_error_handling
+    result = func()
+  File "/home/adminuser/venv/lib/python3.14/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 689, in code_to_exec
+    exec(code, module.__dict__)  # noqa: S102
+    ~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mount/src/nyc-taxi-spatiotemporal-analysis/src/dashboard/app.py", line 7, in <module>
+    from src.data.download import download_sample, load_trip_data, get_zone_lookup
+ModuleNotFoundError: No module named 'src'
+2026-03-11 03:24:45.502 Uncaught app execution
+Traceback (most recent call last):
+  File "/home/adminuser/venv/lib/python3.14/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 129, in exec_func_with_error_handling
+    result = func()
+  File "/home/adminuser/venv/lib/python3.14/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 689, in code_to_exec
+    exec(code, module.__dict__)  # noqa: S102
+    ~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mount/src/nyc-taxi-spatiotemporal-analysis/src/dashboard/app.py", line 7, in <module>
+    from src.data.download import download_sample, load_trip_data, get_zone_lookup
+ModuleNotFoundError: No module named 'src'
+[03:24:45] ❗️ 
+2026-03-11 03:24:45.729 503 GET /script-health-check (127.0.0.1) 228.79ms
+2026-03-11 03:24:50.479 Uncaught app execution
+Traceback (most recent call last):
+  File "/home/adminuser/venv/lib/python3.14/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 129, in exec_func_with_error_handling
+    result = func()
+  File "/home/adminuser/venv/lib/python3.14/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 689, in code_to_exec
+    exec(code, module.__dict__)  # noqa: S102
+    ~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mount/src/nyc-taxi-spatiotemporal-analysis/src/dashboard/app.py", line 7, in <module>
+    from src.data.download import download_sample, load_trip_data, get_zone_lookup
+ModuleNotFoundError: No module named 'src'
+2026-03-11 03:24:50.708 503 GET /script-health-check (127.0.0.1) 231.13ms
+2026-03-11 03:24:55.480 Uncaught app execution
+Traceback (most recent call last):
+  File "/home/adminuser/venv/lib/python3.14/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 129, in exec_func_with_error_handling
+    result = func()
+  File "/home/adminuser/venv/lib/python3.14/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 689, in code_to_exec
+    exec(code, module.__dict__)  # noqa: S102
+    ~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mount/src/nyc-taxi-spatiotemporal-analysis/src/dashboard/app.py", line 7, in <module>
+    from src.data.download import download_sample, load_trip_data, get_zone_lookup
+ModuleNotFoundError: No module named 'src'
+2026-03-11 03:24:55.748 503 GET /script-health-check (127.0.0.1) 269.50ms
+[03:24:58] 🐙 Pulling code changes from Github...
+[03:24:59] 📦 Processing dependencies...
+[03:24:59] 📦 Apt dependencies were installed from /mount/src/nyc-taxi-spatiotemporal-analysis/packages.txt using apt-get.
+[03:24:59] 📦 Processed dependencies!
+[03:25:01] 🔄 Updated app!
+2026-03-11 03:25:05.126 Please replace `use_container_width` with `width`.
+
+`use_container_width` will be removed after 2025-12-31.
+
+For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.
+2026-03-11 03:25:06.600 Please replace `use_container_width` with `width`.
+
+`use_container_width` will be removed after 2025-12-31.
+
+For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.
+2026-03-11 03:25:08.837 Please replace `use_container_width` with `width`.
+
+`use_container_width` will be removed after 2025-12-31.
+
+For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.
+2026-03-11 03:25:08.843 Please replace `use_container_width` with `width`.
+
+`use_container_width` will be removed after 2025-12-31.
+
+For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.
+2026-03-11 03:25:08.970 Please replace `use_container_width` with `width`.
+
+`use_container_width` will be removed after 2025-12-31.
+
+For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.
+2026-03-11 03:25:08.996 Please replace `use_container_width` with `width`.
+
+`use_container_width` will be removed after 2025-12-31.
+
+For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.
+2026-03-11 03:25:09.071 Please replace `use_container_width` with `width`.
+
+`use_container_width` will be removed after 2025-12-31.
+
+For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.
+2026-03-11 03:25:09.131 Please replace `use_container_width` with `width`.
+
+`use_container_width` will be removed after 2025-12-31.
+
+For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.
+[03:27:20] 🐙 Pulling code changes from Github...
+[03:27:21] 📦 Processing dependencies...
+[03:27:21] 📦 Apt dependencies were installed from /mount/src/nyc-taxi-spatiotemporal-analysis/packages.txt using apt-get.
+[03:27:21] 📦 Processed dependencies!
+[03:27:22] 🔄 Updated app!
+[03:30:42] 🐙 Pulling code changes from Github...
+[03:30:43] 📦 Processing dependencies...
+[03:30:43] 📦 Apt dependencies were installed from /mount/src/nyc-taxi-spatiotemporal-analysis/packages.txt using apt-get.
+[03:30:43] 📦 Processed dependencies!
+[03:30:45] ❗️ error restarting streamlit: exit status 7: output: streamlit: ERROR (not running)
+streamlit: ERROR (spawn error)
+
+[03:51:10] 🐙 Pulling code changes from Github...
+[03:51:10] 📦 Processing dependencies...
+[03:51:10] 📦 Apt dependencies were installed from /mount/src/nyc-taxi-spatiotemporal-analysis/packages.txt using apt-get.
+[03:51:10] 📦 Processed dependencies!
+[03:51:11] 🔄 Updated app!

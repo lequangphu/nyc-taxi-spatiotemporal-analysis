@@ -1,5 +1,5 @@
 [project]
-name = "nyc-taxi-spatiotemporal-analysis"
+name = "nyc_taxi_spatiotemporal_analysis"
 version = "0.1.0"
 description = "NYC Taxi Spatiotemporal Analysis - EDA, Zone Grouping, and Anomaly Detection"
 readme = "README.md"
@@ -18,9 +18,9 @@ dev = [
     "ruff>=0.4.0",
 ]
 
-[tool.hatch.build.targets.wheel]
-packages = ["src/anomaly", "src/dashboard", "src/data", "src/eda", "src/zones"]
-
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src"]
