@@ -42,20 +42,35 @@ else:
 DATA_DIR.mkdir(parents=True, exist_ok=True)
 
 
-@st.cache_data
-def load_data(year: int = 2024, month: int = 1) -> pl.DataFrame:
-    """Load and transform taxi trip data."""
+@st.cache_data(ttl=3600)  # Cache for 1 hour
+def load_data(year: int = 2024, month: int = 1, max_rows: int = 50000) -> pl.DataFrame:
+    """Load and transform taxi trip data.
+
+    Uses a smaller sample for faster loading on Streamlit Cloud.
+    """
     try:
-        filepath = download_sample(year, month, DATA_DIR)
+        # Download with smaller sample size for Streamlit Cloud
+        filepath = download_sample(year, month, DATA_DIR, max_rows=max_rows)
         df = load_trip_data(filepath)
         df = transform(df)
         df = add_region_columns(df)
         return df
     except Exception as e:
+        import traceback
         st.error(f"Error loading data: {str(e)}")
-        st.info("Please try a different month or year, or contact support if the issue persists.")
-        # Return empty DataFrame with expected columns to prevent crashes
-        return pl.DataFrame()
+        st.info("Using embedded sample data instead...")
+        # Try to use embedded sample
+        try:
+            from nyc_taxi_spatiotemporal_analysis.data.download import create_embedded_sample
+            filepath = create_embedded_sample(DATA_DIR)
+            df = load_trip_data(filepath)
+            df = transform(df)
+            df = add_region_columns(df)
+            return df
+        except Exception as e2:
+            st.error(f"Could not load embedded sample: {str(e2)}")
+            # Return minimal DataFrame to prevent crashes
+            return pl.DataFrame()
 
 
 def plot_trips_by_hour(df: pl.DataFrame):
