@@ -1,8 +1,15 @@
+import sys
+from pathlib import Path
+
+# Add project root to Python path for imports
+project_root = Path(__file__).parent.parent.parent
+if str(project_root) not in sys.path:
+    sys.path.insert(0, str(project_root))
+
 import streamlit as st
 import polars as pl
 import plotly.express as px
 import plotly.graph_objects as go
-from pathlib import Path
 
 from src.data.download import download_sample, load_trip_data, get_zone_lookup
 from src.data.transform import transform
