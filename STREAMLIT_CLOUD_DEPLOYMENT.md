@@ -122,7 +122,7 @@ After deployment:
 
 Your app should be available at:
 ```
-https://nyc-taxi-spatiotemporal-analysis-vqgaxmmuiddjvq4rnpjnll.streamlit.app/
+https://nyc-taxi-spatiotemporal-analysis-224z7r9hpvqmudwrwpirzf.streamlit.app/
 ```
 
 ## Support

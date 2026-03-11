@@ -93,11 +93,27 @@ nyc-taxi-spatiotemporal-analysis/
 
 ## Deployment
 
-Deploy to Streamlit Cloud:
+### Live Demo
 
-1. Push to GitHub
+🚀 **View the live dashboard**: https://nyc-taxi-spatiotemporal-analysis-224z7r9hpvqmudwrwpirzf.streamlit.app/
+
+### Local Development
+
+```bash
+# Install dependencies
+uv sync
+
+# Run the dashboard
+uv run streamlit run streamlit_app.py
+```
+
+The dashboard will open at `http://localhost:8501`.
+
+### Deploy to Streamlit Cloud
+
+1. Push code to GitHub
 2. Connect repository to [Streamlit Cloud](https://share.streamlit.io)
-3. Set main file to `src/dashboard/app.py`
+3. Set main file to `streamlit_app.py`
 
 ## CV Keywords Demonstrated
 
