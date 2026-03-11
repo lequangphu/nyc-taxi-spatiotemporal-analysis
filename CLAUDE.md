@@ -1,7 +1,11 @@
+# CLAUDE.md
+
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+
 <!-- gitnexus:start -->
 # GitNexus — Code Intelligence
 
-This project is indexed by GitNexus as **nyc-taxi-spatiotemporal-analysis** (92 symbols, 170 relationships, 9 execution flows). Use the GitNexus MCP tools to understand code, assess impact, and navigate safely.
+This project is indexed by GitNexus as **nyc-taxi-spatiotemporal-analysis** (93 symbols, 170 relationships, 9 execution flows). Use the GitNexus MCP tools to understand code, assess impact, and navigate safely.
 
 > If any GitNexus tool warns the index is stale, run `npx gitnexus analyze` in terminal first.
 
@@ -94,3 +98,103 @@ To check whether embeddings exist, inspect `.gitnexus/meta.json` — the `stats.
 - Generate docs: `npx gitnexus wiki`
 
 <!-- gitnexus:end -->
+
+---
+
+# Project Commands
+
+**IMPORTANT: Use `uv` exclusively for all Python operations in this project.**
+
+## Environment Setup
+
+```bash
+# Install dependencies and create virtual environment
+uv sync
+
+# Activate the virtual environment (if needed manually)
+source .venv/bin/activate
+```
+
+## Development Commands
+
+```bash
+# Run the Streamlit dashboard
+uv run streamlit run src/dashboard/app.py
+
+# Lint code
+uv run ruff check .
+
+# Format code
+uv run ruff format .
+
+# Run tests
+uv run pytest
+
+# Install a new dependency
+uv add <package-name>
+
+# Install a new dev dependency
+uv add --dev <package-name>
+```
+
+## Data Operations
+
+```bash
+# Download sample data (done automatically via the dashboard)
+# Data is stored in the `data/` directory at project root
+```
+
+---
+
+# Architecture Overview
+
+This is a spatiotemporal data analysis project for NYC Yellow Taxi trip data, demonstrating EDA, zone grouping, and behavior-based anomaly detection.
+
+## Package Structure
+
+```
+src/
+├── data/           # Data pipeline (download, transform)
+├── eda/            # Exploratory data analysis (temporal, spatial, stats)
+├── zones/          # Zone grouping and region mapping
+├── anomaly/        # Anomaly detection logic
+└── dashboard/      # Streamlit web interface
+```
+
+## Module Dependencies
+
+The dashboard (`src/dashboard/app.py`) is the main entry point and orchestrates all other modules:
+
+1. **data/download.py**: Downloads NYC TLC parquet files, loads trip data, and provides zone lookup
+2. **data/transform.py**: Applies feature engineering (temporal features, duration, speed, fare per mile) and data cleaning
+3. **eda/temporal.py**: Temporal aggregation functions (by hour, day, month, weekday vs weekend)
+4. **eda/spatial.py**: Spatial aggregation functions (top zones, zone pair flows, heatmaps)
+5. **eda/stats.py**: Basic statistics and payment analysis
+6. **zones/grouper.py**: Groups 265 taxi zones into regions (Manhattan, Brooklyn, Queens, Bronx, Staten Island, Airports)
+7. **anomaly/detector.py**: Detects anomalies (speed, fare outliers, unusual trip patterns)
+
+## Key Design Patterns
+
+- **Polars for Data**: All data operations use Polars DataFrames (not pandas) for performance
+- **Pure Functions**: Analysis functions are pure - they take a DataFrame and return aggregated results
+- **Transform Pipeline**: Data flows through `transform()` function which chains all feature engineering steps
+- **Caching**: Dashboard uses `@st.cache_data` to cache loaded and transformed data
+
+## Data Flow
+
+```
+NYC TLC Parquet → load_trip_data() → transform() → add_region_columns() → EDA functions → Visualizations
+                                      ↓
+                              (temporal features,
+                               duration, speed,
+                               fare_per_mile,
+                               cleaning)
+```
+
+## Zone Mapping
+
+The project uses two mappings in `zones/grouper.py`:
+- `NYC_TAXI_ZONES`: Lists zone IDs by borough/region
+- `ZONE_REGION_MAP`: Maps individual zone IDs to region names (more granular than the above)
+
+Both mappings cover the same 265 taxi zones but serve different purposes - the former for grouping, the latter for lookup.
