@@ -1,0 +1,33 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+.gitnexus
+.conda
+
+# Data files (large downloaded datasets)
+data/*.parquet
+data/*.csv
+data/*.json
+!data/.gitkeep
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Environment variables
+.env
+.env.local

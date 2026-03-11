@@ -1,0 +1,9 @@
+# Core dependencies for NYC Taxi Spatiotemporal Analysis
+polars>=1.0.0
+streamlit>=1.30.0
+plotly>=5.20.0
+pyarrow>=15.0.0
+pandas>=2.0.0
+
+# Additional dependencies for Streamlit Cloud
+requests>=2.31.0
