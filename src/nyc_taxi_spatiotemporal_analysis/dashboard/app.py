@@ -1,10 +1,4 @@
-# Page config MUST be first Streamlit command
 import streamlit as st
-
-st.set_page_config(
-    page_title="NYC Taxi Spatiotemporal Analysis", page_icon="🚕", layout="wide"
-)
-
 import polars as pl
 import plotly.express as px
 import plotly.graph_objects as go
@@ -146,7 +140,10 @@ def plot_trips_by_region(df: pl.DataFrame):
     st.plotly_chart(fig, width="stretch")
 
 
-def main():
+def run_app():
+    """Run the main dashboard application."""
+    import streamlit as st
+
     st.title("🚕 NYC Taxi Spatiotemporal Analysis")
     st.markdown("""
     Exploratory data analysis, zone grouping, and anomaly detection on NYC Yellow Taxi trip data.
@@ -288,7 +285,7 @@ def main():
                 x="DOLocationID",
                 y="trip_count",
                 title="Top 10 Dropoff Zones",
-                labels={"DULocationID": "Zone ID", "trip_count": "Trip Count"},
+                labels={"DOLocationID": "Zone ID", "trip_count": "Trip Count"},
                 color="trip_count",
                 color_continuous_scale="Oranges",
             )
@@ -387,7 +384,3 @@ def main():
             )
         else:
             st.info("No anomalies detected with current thresholds.")
-
-
-if __name__ == "__main__":
-    main()
