@@ -1,39 +1,33 @@
-import sys
 from pathlib import Path
-
-# Add project root to Python path for imports
-project_root = Path(__file__).parent.parent.parent
-if str(project_root) not in sys.path:
-    sys.path.insert(0, str(project_root))
 
 import streamlit as st
 import polars as pl
 import plotly.express as px
 import plotly.graph_objects as go
 
-from src.data.download import download_sample, load_trip_data, get_zone_lookup
-from src.data.transform import transform
-from src.eda.temporal import (
+from data.download import download_sample, load_trip_data, get_zone_lookup
+from data.transform import transform
+from eda.temporal import (
     trips_by_hour,
     trips_by_day_of_week,
     trips_by_month,
     hourly_patterns_weekday_vs_weekend,
     get_temporal_summary,
 )
-from src.eda.spatial import (
+from eda.spatial import (
     top_pickup_zones,
     top_dropoff_zones,
     zone_pair_flows,
     get_spatial_summary,
     zone_heatmap_data,
 )
-from src.eda.stats import get_basic_stats, get_payment_stats
-from src.zones.grouper import (
+from eda.stats import get_basic_stats, get_payment_stats
+from zones.grouper import (
     add_region_columns,
     trips_by_region,
     region_to_region_flows,
 )
-from src.anomaly.detector import detect_all_anomalies
+from anomaly.detector import detect_all_anomalies
 
 
 DATA_DIR = Path(__file__).parent.parent.parent / "data"
